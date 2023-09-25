@@ -4,8 +4,10 @@ import { ScannerScreenStyles } from './ScannerStyles';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Skeleton } from 'antd';
 import { IMAGES } from 'src/assets/Images/Images';
+import { useNavigate } from 'react-router-dom';
 
 export const Scanner_Screen: React.FC = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
 
   setTimeout(() => {
@@ -42,7 +44,7 @@ export const Scanner_Screen: React.FC = () => {
       ) : (
         <ScannerScreenStyles>
           <div className="container">
-            <div>
+            <div onClick={() => navigate('/')}>
               <img src={IMAGES.logo} alt="Logo" />
             </div>
             <Scanner />

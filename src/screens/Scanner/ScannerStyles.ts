@@ -28,6 +28,7 @@ export const ScannerScreenStyles = styled.main`
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
     }
     & > :nth-child(2) {
       display: flex;

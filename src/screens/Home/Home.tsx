@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const Home: React.FC = () => {
   const navigate = useNavigate();
+
   return (
     <HomeScreenStyles>
       <div className="homeContainer">
