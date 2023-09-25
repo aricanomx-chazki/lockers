@@ -13,6 +13,9 @@ overrides:
   '@testing-library/user-event': ^13.5.0
 
 dependencies:
+  '@ant-design/icons':
+    specifier: ^5.2.6
+    version: 5.2.6(react-dom@18.2.0)(react@18.2.0)
   '@yudiel/react-qr-scanner':
     specifier: ^1.1.10
     version: 1.1.10(react-dom@18.2.0)(react@18.2.0)

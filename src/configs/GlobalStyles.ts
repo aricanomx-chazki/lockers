@@ -3,11 +3,11 @@ import { createGlobalStyle } from 'styled-components';
 import MBlack from '../assets/Fonts/Montserrat-Black.ttf';
 import MBold from '../assets/Fonts/Montserrat-Bold.ttf';
 import MEBold from '../assets/Fonts/Montserrat-ExtraBold.ttf';
-import MELight from '../assets/Fonts/Montserrat-ExtraLight.ttf';
-import MLight from '../assets/Fonts/Montserrat-Light.ttf';
+import MSBold from '../assets/Fonts/Montserrat-SemiBold.ttf';
 import MMedium from '../assets/Fonts/Montserrat-Medium.ttf';
 import MRegular from '../assets/Fonts/Montserrat-Regular.ttf';
-import MSBold from '../assets/Fonts/Montserrat-SemiBold.ttf';
+import MLight from '../assets/Fonts/Montserrat-Light.ttf';
+import MELight from '../assets/Fonts/Montserrat-ExtraLight.ttf';
 import MThin from '../assets/Fonts/Montserrat-Thin.ttf';
 
 export const theme = {
@@ -25,13 +25,13 @@ export const theme = {
   },
   fonts: {
     mb: 'Montserrat-Black',
-    mbold: 'Montserrat-Bold',
     mebold: 'Montserrat-ExtraBold',
-    mel: 'Montserrat-ExtraLight',
-    ml: 'Montserrat-Light',
+    mbold: 'Montserrat-Bold',
+    msb: 'Montserrat-SemiBold',
     mm: 'Montserrat-Medium',
     mr: 'Montserrat-Regular',
-    msb: 'Montserrat-SemiBold',
+    ml: 'Montserrat-Light',
+    mel: 'Montserrat-ExtraLight',
     mt: 'Montserrat-Thin',
   },
   screenSizes: {},

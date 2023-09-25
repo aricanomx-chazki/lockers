@@ -30,6 +30,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@yudiel/react-qr-scanner": "^1.1.10",
     "antd": "^5.9.2",
     "i18next": "^23.5.1",

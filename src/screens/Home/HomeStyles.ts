@@ -5,17 +5,11 @@ export const HomeScreenStyles = styled.main`
   width: 100%;
   height: 100%;
   max-height: 100vh;
-  & img {
-    width: 100%;
-    margin: none;
-    padding: none;
-    filter: drop-shadow(0rem 0.125rem 1rem rgba(47, 140, 252, 0.25));
-  }
   & > .homeContainer {
     height: inherit;
     width: inherit;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 25% 45% 30%;
     & > :nth-child(1) {
       background-image: url(${IMAGE.header_form});
       background-repeat: no-repeat;
@@ -23,31 +17,31 @@ export const HomeScreenStyles = styled.main`
       background-position: top;
     }
     & > :nth-child(2) {
-      height: 100%;
       display: grid;
       grid-template-rows: 1fr 1fr 1fr;
-      justify-content: center;
+      justify-items: center;
       align-items: center;
       text-align: center;
-      & h1 {
+      & > h1 {
         font-size: 2.75em;
-        font-family: 'Montserrat-Thin';
+        font-family: ${({ theme }) => theme.fonts.mel};
         color: ${({ theme }) => theme.palette.Black};
       }
-      & h2 {
+      & > h2 {
         padding: 0 1rem;
         font-size: 1em;
-        font-family: 'Montserrat-Thin';
+        font-family: ${({ theme }) => theme.fonts.mt};
         color: ${({ theme }) => theme.palette.SecondaryCoolGray};
       }
-      .ImageLogo {
+      & > img {
         width: 12.5rem;
+        filter: drop-shadow(0rem 0.125rem 1rem rgba(47, 140, 252, 0.25));
       }
     }
     & > :nth-child(3) {
       background-image: url(${IMAGE.footer_form});
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: cover;
       background-position: bottom;
       position: relative;
       & > button {
@@ -74,7 +68,6 @@ export const HomeScreenStyles = styled.main`
           transform: translate(35%, 0rem);
         }
         &:hover {
-          /* background: ${({ theme }) => theme.palette.SecondaryBlue}; */
           box-shadow: 0px -8px 10px 0px rgba(51, 51, 51, 0.2) inset,
             0px 0px 26px 0px rgba(255, 255, 255, 0.25);
           cursor: pointer;
@@ -93,6 +86,14 @@ export const HomeScreenStyles = styled.main`
     align-items: center;
     flex-direction: column;
     margin: auto;
+    & > .homeContainer {
+      & > h2 {
+        padding: 0 1rem;
+        font-size: 1.25em;
+        font-family: 'Montserrat-Thin';
+        color: ${({ theme }) => theme.palette.SecondaryCoolGray};
+      }
+    }
     /* background-color: green; */
   }
 

@@ -1,20 +1,22 @@
 import React from 'react';
 import { IMAGES as IMAGE } from '../../assets/Images/Images';
 import { HomeScreenStyles } from './HomeStyles';
+import { useNavigate } from 'react-router-dom';
 
 export const Home: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <HomeScreenStyles>
       <div className="homeContainer">
         <div />
 
         <div>
-          <img className="ImageLogo" src={IMAGE.logo} alt="header_form" />
+          <img src={IMAGE.logo} alt="header_form" />
           <h1>Bienvenid@</h1>
           <h2>¡Tu próxima aventura esta a un QR de distancia!</h2>
         </div>
         <div>
-          <button>
+          <button onClick={() => navigate('/scanner')}>
             <span>Escanear QR</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
