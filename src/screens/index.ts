@@ -1,2 +1,2 @@
-export { Home } from './Home';
-export { Scanner } from './Scanner';
+export { Home } from './Home/Home';
+export { Scanner_Screen } from './Scanner/Scanner_Screen';
