@@ -2,9 +2,8 @@ import styled from 'styled-components';
 import { IMAGES as IMAGE } from '../../assets/Images';
 
 export const HomeScreenStyles = styled.main`
-  width: 100%;
-  height: 100%;
-  max-height: 100vh;
+  height: 100vh;
+  width: 100vw;
   & > .homeContainer {
     height: inherit;
     width: inherit;
@@ -13,8 +12,9 @@ export const HomeScreenStyles = styled.main`
     & > :nth-child(1) {
       background-image: url(${IMAGE.header_form});
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: cover;
       background-position: top;
+      filter: drop-shadow(0rem 0.125rem 1rem rgba(47, 140, 252, 0.25));
     }
     & > :nth-child(2) {
       display: grid;
@@ -28,16 +28,9 @@ export const HomeScreenStyles = styled.main`
         color: ${({ theme }) => theme.palette.Black};
       }
       & > h2 {
-        padding: 0 1rem;
         font-size: 1em;
         font-family: ${({ theme }) => theme.fonts.mt};
         color: ${({ theme }) => theme.palette.SecondaryCoolGray};
-      }
-      & > img {
-        width: 12.5rem;
-        zoom: 125%;
-        /* filter: drop-shadow(0rem 0.125rem 1rem rgba(47, 140, 252, 0.25));
-         */
       }
     }
     & > :nth-child(3) {
@@ -59,7 +52,7 @@ export const HomeScreenStyles = styled.main`
         align-items: center;
         justify-items: center;
         font-size: 1.25;
-        font-family: ${({ theme }) => theme.fonts.mbold};
+        font-family: ${({ theme }) => theme.fonts.MSBold};
         color: ${({ theme }) => theme.palette.White};
         border: none;
         border-radius: 0.5rem;
@@ -80,25 +73,17 @@ export const HomeScreenStyles = styled.main`
         }
       }
     }
-  }
-  @media (min-width: 440px) {
-    display: flex;
-    width: 480px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: auto;
-    & > .homeContainer {
+    @media (min-width: 440px) {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
       box-shadow: 0px 0px 100px 1px rgba(136, 139, 141, 0.5);
-      /* filter: drop-shadow(0rem 0.125rem 1rem rgba(136, 139, 141, 1)); */
-      & > h2 {
-        padding: 0 1rem;
-        font-size: 1.25em;
-        font-family: 'Montserrat-Thin';
-        color: ${({ theme }) => theme.palette.SecondaryCoolGray};
+      & > :nth-child(2) > h2 {
+        padding: 0 2rem;
+        font-size: 1.125em;
+        font-family: ${({ theme }) => theme.fonts.MThin};
       }
     }
-    /* background-color: green; */
   }
 
   @keyframes hithere {

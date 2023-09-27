@@ -1,19 +1,38 @@
 import { QrScanner } from '@yudiel/react-qr-scanner';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 export const Scanner = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleDecode = (data: string) => {
     if (data.includes('https://lockers.chazki.com')) {
       const wrongId = data.split('?id=')[1];
-      const sessionId = data.split('&session=')[1];
       const seedId = wrongId.split('&')[0];
-      navigate(`/validation/`, {
-        state: { seedId, sessionId },
-      });
+      const sessionId = data.split('&session=')[1];
 
-      // console.log({ seedId, sessionId });
+      const secret = import.meta.env.VITE_SECRET;
+      // const secret = 'KVKFKRCPNZQUYMLXOVYDSQKJKZDTSRLD';
+      // window.otplib.totp.option({
+      //   digits: 6,
+      //   epoch: 0,
+      //   step: 30,
+      //   window: 2,
+      // });
+      // const tokenOTP = window.otplib.totp.generate(secret);
+      // const checkLocal = window.otplib.totp.check(tokenOTP, secret);
+      // const checkChazki = window.otplib.totp.check(sessionId, secret);
+
+      console.log({
+        secret,
+        seedId,
+        sessionId,
+        // tokenOTP,
+        // checkLocal,
+        // checkChazki,
+      });
+      // navigate(`/validation/`, {
+      //   state: { seedId, sessionId },
+      // });
     } else {
       console.log('No es un código de Chazki');
     }
@@ -22,12 +41,10 @@ export const Scanner = () => {
   return (
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
-        width: '100%',
-        padding: '0 0',
+        height: '95%',
+        width: '95%',
+        padding: '0',
+        margin: '0',
       }}
     >
       <QrScanner
@@ -47,13 +64,9 @@ export const Scanner = () => {
         // ++++++++++++++++++
         // constraints={{ facingMode: 'environment' }}
         containerStyle={{
-          border: '2px solid transparent',
           borderRadius: '1rem',
-          backgroundColor: 'white',
         }}
         videoStyle={{
-          backgroundColor: 'white',
-          // border: '2px solid transparent',
           borderRadius: '1rem',
         }}
         // hideCount={false}

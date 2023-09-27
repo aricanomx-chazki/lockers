@@ -1,19 +1,43 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Home, QRValidation, Scanner_Screen } from '../screens';
-import { GlobalStyles, theme } from '../configs/GlobalStyles';
+import { ResetGlobalStyles, theme } from '../configs/GlobalStyles';
 
 import { ThemeProvider } from 'styled-components';
+import { Layout } from 'src/components/Layout';
+import { Locker } from 'src/screens/Locker/Locker';
 
 export const App = () => {
   return (
     <>
-      <GlobalStyles />
       <ThemeProvider theme={theme}>
+        <ResetGlobalStyles />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/scanner" element={<Scanner_Screen />} />
-            <Route path="/validation" element={<QRValidation />} />
+            <Route
+              path="/scanner"
+              element={
+                <Layout>
+                  <Scanner_Screen />
+                </Layout>
+              }
+            />
+            <Route
+              path="/validation"
+              element={
+                <Layout>
+                  <QRValidation />
+                </Layout>
+              }
+            />
+            <Route
+              path="/locker"
+              element={
+                <Layout>
+                  <Locker />
+                </Layout>
+              }
+            />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>

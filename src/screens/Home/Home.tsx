@@ -1,7 +1,7 @@
 import React from 'react';
-import { IMAGES } from '../../assets/Images';
-import { HomeScreenStyles } from './HomeStyles';
 import { useNavigate } from 'react-router-dom';
+import { Component_Logo } from 'src/components';
+import { HomeScreenStyles } from './HomeStyles';
 
 export const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -12,10 +12,11 @@ export const Home: React.FC = () => {
         <div />
 
         <div>
-          <img src={IMAGES.logos.blue_green} alt="Chazki Logo" />
+          <Component_Logo />
           <h1>Bienvenid@</h1>
           <h2>¡Tu próxima aventura esta a un QR de distancia!</h2>
         </div>
+
         <div>
           <button onClick={() => navigate('/scanner')}>
             <span>Escanear QR</span>

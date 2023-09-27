@@ -2,14 +2,25 @@ import { useNavigate } from 'react-router-dom';
 import { IMAGES } from 'src/assets/Images';
 
 interface props {
-  color: string;
+  color?: string;
+  width?: string;
+  height?: string;
 }
-export const Component_Logo = ({ color }: props) => {
+export const Component_Logo = ({
+  color,
+  width = 'auto',
+  height = 'auto',
+}: props) => {
   const navigate = useNavigate();
 
   return (
     <div onClick={() => navigate('/')}>
       <img
+        style={{
+          cursor: 'pointer',
+          width: `${width}`,
+          height: `${height}`,
+        }}
         src={(() => {
           switch (color) {
             case 'black':

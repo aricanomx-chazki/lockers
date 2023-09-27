@@ -11,4 +11,6 @@ export const IMAGES = {
   footer_form: new URL('./Footer_vector.svg', import.meta.url).href,
   logo: new URL('./Logo_Chazki.svg', import.meta.url).href,
   loader: new URL('./Loader.svg', import.meta.url).href,
+  qr: new URL('./QR.svg', import.meta.url).href,
+  clip: new URL('./Clip.gif', import.meta.url).href,
 };
