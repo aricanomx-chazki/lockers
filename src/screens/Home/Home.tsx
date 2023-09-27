@@ -1,5 +1,5 @@
 import React from 'react';
-import { IMAGES as IMAGE } from '../../assets/Images/Images';
+import { IMAGES } from '../../assets/Images';
 import { HomeScreenStyles } from './HomeStyles';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ export const Home: React.FC = () => {
         <div />
 
         <div>
-          <img src={IMAGE.logo} alt="header_form" />
+          <img src={IMAGES.logos.blue_green} alt="Chazki Logo" />
           <h1>Bienvenid@</h1>
           <h2>¡Tu próxima aventura esta a un QR de distancia!</h2>
         </div>

@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { Scanner } from '../../components/Scanner';
 import { ScannerScreenStyles } from './ScannerStyles';
-import { LoadingOutlined } from '@ant-design/icons';
-import { Spin, Skeleton } from 'antd';
-import { IMAGES } from 'src/assets/Images/Images';
-import { useNavigate } from 'react-router-dom';
+import { Skeleton } from 'antd';
+import { Component_Logo } from 'src/components/Logo';
+import { Component_Loader } from 'src/components/Loader';
 
 export const Scanner_Screen: React.FC = () => {
-  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
+  // const secret = import.meta.env.VITE_SECRET;
 
   setTimeout(() => {
     setIsLoading(false);
@@ -35,18 +34,21 @@ export const Scanner_Screen: React.FC = () => {
               active={true}
             />
           </div>
-          <div className="containerLoader">
+          <Component_Loader />
+          {/* <div className="containerLoader">
             <Spin
               indicator={<LoadingOutlined style={{ fontSize: 96 }} spin />}
             />
-          </div>
+          </div> */}
         </ScannerScreenStyles>
       ) : (
         <ScannerScreenStyles>
           <div className="container">
-            <div onClick={() => navigate('/')}>
-              <img src={IMAGES.logo} alt="Logo" />
-            </div>
+            {/* <div onClick={() => navigate('/')}>
+              <img src={IMAGES.logos.blue_green} alt="Chazki Logo" />
+            </div> */}
+            <Component_Logo color="blue-green" />
+            {/* <Component_Logo color="black" /> */}
             <Scanner />
           </div>
         </ScannerScreenStyles>

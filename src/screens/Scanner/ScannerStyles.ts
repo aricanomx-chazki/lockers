@@ -14,7 +14,7 @@ export const ScannerScreenStyles = styled.main`
     transform: translate(-50%, -50%);
     background-color: transparent;
     /* anticon anticon-loading anticon-spin ant-spin-dot */
-    f & .ant-spin-dot {
+    & .ant-spin-dot {
       color: ${({ theme }) => theme.palette.Green};
       filter: drop-shadow(0rem 0.125rem 1rem rgba(47, 140, 252, 1));
     }

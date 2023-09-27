@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IMAGES as IMAGE } from '../../assets/Images/Images';
+import { IMAGES as IMAGE } from '../../assets/Images';
 
 export const HomeScreenStyles = styled.main`
   width: 100%;
@@ -35,7 +35,9 @@ export const HomeScreenStyles = styled.main`
       }
       & > img {
         width: 12.5rem;
-        filter: drop-shadow(0rem 0.125rem 1rem rgba(47, 140, 252, 0.25));
+        zoom: 125%;
+        /* filter: drop-shadow(0rem 0.125rem 1rem rgba(47, 140, 252, 0.25));
+         */
       }
     }
     & > :nth-child(3) {
@@ -87,6 +89,8 @@ export const HomeScreenStyles = styled.main`
     flex-direction: column;
     margin: auto;
     & > .homeContainer {
+      box-shadow: 0px 0px 100px 1px rgba(136, 139, 141, 0.5);
+      /* filter: drop-shadow(0rem 0.125rem 1rem rgba(136, 139, 141, 1)); */
       & > h2 {
         padding: 0 1rem;
         font-size: 1.25em;
