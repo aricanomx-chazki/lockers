@@ -1,10 +1,5 @@
 import { useState } from 'react';
-import {
-  Component_Loader,
-  Component_Logo,
-  Component_Skeleton,
-  Scanner,
-} from 'src/components';
+import { Component_Logo, Component_Skeleton, Scanner } from 'src/components';
 import { ScannerScreenStyles } from './ScannerStyles';
 
 export const Scanner_Screen: React.FC = () => {
@@ -18,10 +13,7 @@ export const Scanner_Screen: React.FC = () => {
   return (
     <>
       {isLoading ? (
-        <ScannerScreenStyles>
-          <Component_Skeleton />
-          <Component_Loader />
-        </ScannerScreenStyles>
+        <Component_Skeleton />
       ) : (
         <ScannerScreenStyles>
           <Component_Logo color="blue-green" />

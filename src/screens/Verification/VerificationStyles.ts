@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LockerStyles = styled.main`
+export const VerificationStyles = styled.main`
   height: inherit;
   width: inherit;
   display: grid;
@@ -28,7 +28,6 @@ export const LockerStyles = styled.main`
       color: ${({ theme }) => theme?.palette?.SecondaryBlue};
       text-align: center;
     }
-    /* border: 1px solid red; */
   }
   & > :nth-child(3) {
     margin: 0 auto;

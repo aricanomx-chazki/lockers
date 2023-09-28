@@ -1,8 +1,8 @@
 import { QrScanner } from '@yudiel/react-qr-scanner';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const Scanner = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleDecode = (data: string) => {
     if (data.includes('https://lockers.chazki.com')) {
@@ -10,29 +10,10 @@ export const Scanner = () => {
       const seedId = wrongId.split('&')[0];
       const sessionId = data.split('&session=')[1];
 
-      const secret = import.meta.env.VITE_SECRET;
-      // const secret = 'KVKFKRCPNZQUYMLXOVYDSQKJKZDTSRLD';
-      // window.otplib.totp.option({
-      //   digits: 6,
-      //   epoch: 0,
-      //   step: 30,
-      //   window: 2,
-      // });
-      // const tokenOTP = window.otplib.totp.generate(secret);
-      // const checkLocal = window.otplib.totp.check(tokenOTP, secret);
-      // const checkChazki = window.otplib.totp.check(sessionId, secret);
-
-      console.log({
-        secret,
-        seedId,
-        sessionId,
-        // tokenOTP,
-        // checkLocal,
-        // checkChazki,
+      navigate(`/validation/`, {
+        state: { seedId, sessionId },
       });
-      // navigate(`/validation/`, {
-      //   state: { seedId, sessionId },
-      // });
+      console.log('Este es tu código de Chazki: ' + sessionId);
     } else {
       console.log('No es un código de Chazki');
     }

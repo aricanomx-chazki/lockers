@@ -21,10 +21,31 @@ export const QRValidation = () => {
     setToken(token);
     if (token === sessionId) {
       setTimeout(() => {
-        navigate('/show-locker');
+        navigate('/locker');
       }, 500);
     }
   };
+
+  // const secret = import.meta.env.VITE_SECRET;
+  // // const secret = 'KVKFKRCPNZQUYMLXOVYDSQKJKZDTSRLD';
+  // // window.otplib.totp.option({
+  // //   digits: 6,
+  // //   epoch: 0,
+  // //   step: 30,
+  // //   window: 2,
+  // // });
+  // // const tokenOTP = window.otplib.totp.generate(secret);
+  // // const checkLocal = window.otplib.totp.check(tokenOTP, secret);
+  // // const checkChazki = window.otplib.totp.check(sessionId, secret);
+
+  // console.log({
+  //   secret,
+  //   seedId,
+  //   sessionId,
+  //   // tokenOTP,
+  //   // checkLocal,
+  //   // checkChazki,
+  // });
 
   // setTimeout(() => {
   //   navigate('/scanner');
@@ -37,9 +58,7 @@ export const QRValidation = () => {
   return (
     <>
       {isLoading ? (
-        <QRValidationStyles>
-          <Component_Skeleton />
-        </QRValidationStyles>
+        <Component_Skeleton />
       ) : (
         <QRValidationStyles>
           <Component_Logo />
@@ -52,7 +71,7 @@ export const QRValidation = () => {
               />
               <h1>Ingrese el código para validar la reservación con ID:</h1>
               <h3>{JSON.stringify(seedId)}</h3>
-              <h3>{JSON.stringify(sessionId)}</h3>
+              {/* <h3>{JSON.stringify(sessionId)}</h3> */}
             </div>
 
             {token.length === 6 && token !== sessionId ? (

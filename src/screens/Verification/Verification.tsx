@@ -1,44 +1,42 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { VerificationStyles } from './VerificationStyles';
+import { Component_Logo, Component_Skeleton } from 'src/components';
 import { Button } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
-import { Component_Logo, Component_Skeleton } from 'src/components';
 import { IMAGES } from 'src/assets/Images';
-import { LockerStyles } from './LockerStyles';
 
-export const Locker = () => {
+export const Verification = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   // const secret = import.meta.env.VITE_SECRET;
 
   setTimeout(() => {
     setIsLoading(false);
-  }, 1500);
+  }, 1000);
 
   return (
     <>
       {isLoading ? (
         <Component_Skeleton />
       ) : (
-        <LockerStyles>
+        <VerificationStyles>
           <Component_Logo color="blue-green" />
           <div>
-            <img src={IMAGES.clip} alt="Clip" />
+            <img src={IMAGES.locker} alt="Locker Shadow" />
             <h2>
-              {`¡Tu casillero se ha abierto con éxito!`}
-              <br />
-              {`Ahora puedes retirar tu producto`}
+              {`No olvides cerrar tu casillero, hasta escuchar el click. `}
             </h2>
           </div>
           <Button
             shape="round"
             icon={<CaretRightOutlined />}
-            onClick={() => navigate('/verification')}
+            onClick={() => navigate('/')}
             // size={'large'}
           >
-            Continuar
+            Terminar
           </Button>
-        </LockerStyles>
+        </VerificationStyles>
       )}
     </>
   );
