@@ -24,109 +24,119 @@ export const theme = {
     SecondaryWhite: '#E5E5E5',
   },
   fonts: {
-    mb: 'Montserrat-Black',
-    mebold: 'Montserrat-ExtraBold',
-    mbold: 'Montserrat-Bold',
-    msb: 'Montserrat-SemiBold',
-    mm: 'Montserrat-Medium',
-    mr: 'Montserrat-Regular',
-    ml: 'Montserrat-Light',
-    mel: 'Montserrat-ExtraLight',
-    mt: 'Montserrat-Thin',
+    MBlack: 'Montserrat-Black',
+    MBold: 'Montserrat-ExtraBold',
+    MEBold: 'Montserrat-Bold',
+    MSBold: 'Montserrat-SemiBold',
+    MMedium: 'Montserrat-Medium',
+    MRegular: 'Montserrat-Regular',
+    MLight: 'Montserrat-Light',
+    MELight: 'Montserrat-ExtraLight',
+    MThin: 'Montserrat-Thin',
   },
-  screenSizes: {},
 };
 
-export const GlobalStyles = createGlobalStyle`
+export const ResetGlobalStyles = createGlobalStyle`
+  @font-face {
+   font-family: 'Montserrat-Black';
+   src: url(${MBlack}) format('truetype');
+   font-style: normal;
+   font-display: fallback;
+   }
+  @font-face {
+     font-family: 'Montserrat-Bold';
+     src: url(${MBold}) format('truetype');
+     font-style: normal;
+     font-display: fallback;
+   }
+  @font-face {
+     font-family: 'Montserrat-ExtraBold';
+     src: url(${MEBold}) format('truetype');
+     font-style: normal;
+     font-display: fallback;
+   }
+  @font-face {
+     font-family: 'Montserrat-ExtraLight';
+     src: url(${MELight}) format('truetype');
+     font-style: normal;
+     font-display: fallback;
+   }
+  @font-face {
+     font-family: 'Montserrat-Light';
+     src: url(${MLight}) format('truetype');
+     font-style: normal;
+     font-display: fallback;
+   }
+  @font-face {
+     font-family: 'Montserrat-Medium';
+     src: url(${MMedium}) format('truetype');
+     font-style: normal;
+     font-display: fallback;
+   }
+  @font-face {
+     font-family: 'Montserrat-Regular';
+     src: url(${MRegular}) format('truetype');
+     font-style: normal;
+     font-display: fallback;
+   }
+  @font-face {
+     font-family: 'Montserrat-SemiBold';
+     src: url(${MSBold}) format('truetype');
+     font-style: normal;
+     font-display: fallback;
+   }
+  @font-face {
+   font-family: 'Montserrat-Thin';
+     src: url(${MThin}) format('truetype');
+     font-style: normal;
+     font-display: fallback;
+   }
 
-@font-face {
-  font-family: 'Montserrat-Black';
-  src: url(${MBlack}) format('truetype');
-  font-style: normal;
-  font-display: fallback;
-}
- @font-face {
-    font-family: 'Montserrat-Bold';
-    src: url(${MBold}) format('truetype');
-    font-style: normal;
-    font-display: fallback;
-  }
- @font-face {
-    font-family: 'Montserrat-ExtraBold';
-    src: url(${MEBold}) format('truetype');
-    font-style: normal;
-    font-display: fallback;
-  }
- @font-face {
-    font-family: 'Montserrat-ExtraLight';
-    src: url(${MELight}) format('truetype');
-    font-style: normal;
-    font-display: fallback;
-  }
- @font-face {
-    font-family: 'Montserrat-Light';
-    src: url(${MLight}) format('truetype');
-    font-style: normal;
-    font-display: fallback;
-  }
- @font-face {
-    font-family: 'Montserrat-Medium';
-    src: url(${MMedium}) format('truetype');
-    font-style: normal;
-    font-display: fallback;
-  }
- @font-face {
-    font-family: 'Montserrat-Regular';
-    src: url(${MRegular}) format('truetype');
-    font-style: normal;
-    font-display: fallback;
-  }
- @font-face {
-    font-family: 'Montserrat-SemiBold';
-    src: url(${MSBold}) format('truetype');
-    font-style: normal;
-    font-display: fallback;
-  }
- @font-face {
-  font-family: 'Montserrat-Thin';
-    src: url(${MThin}) format('truetype');
-    font-style: normal;
-    font-display: fallback;
-  }
-
-   &*,
-  &::after,
-  &::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-  }
-
-
-  & html,
-  & body,
-  #root {
-    height: 100%;
-    width: 100%;
-    max-width: 100vw;
-    max-height: 100vh;
-    overflow: hidden;
-    /* & ::-webkit-scrollbar {
-      opacity:0;
-    } */
-  }
-
-  & > html {
-    height: 100vh;
+  *,
+  ::after,
+  ::before {
     box-sizing: border-box;
-    scroll-behavior: smooth;
   }
 
-  & > body {
-    font-family: 'Montserrat-Regular';
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    }
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  ul[class],
+  ol[class],
+  li,
+  figure,
+  figcaption,
+  blockquote,
+  dl,
+  dd {
+    margin: 0;
+    font-family: ${({ theme }) => theme?.fonts.MRegular};
+  }
 
+  body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+  }
+
+  ul[class],
+  ol[class] {
+    list-style: none;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
 `;

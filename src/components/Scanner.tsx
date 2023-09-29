@@ -1,12 +1,19 @@
 import { QrScanner } from '@yudiel/react-qr-scanner';
+import { useNavigate } from 'react-router-dom';
 
 export const Scanner = () => {
+  const navigate = useNavigate();
+
   const handleDecode = (data: string) => {
     if (data.includes('https://lockers.chazki.com')) {
       const wrongId = data.split('?id=')[1];
-      const sessionId = data.split('&session=')[1];
       const seedId = wrongId.split('&')[0];
-      console.log({ seedId, sessionId });
+      const sessionId = data.split('&session=')[1];
+
+      navigate(`/validation/`, {
+        state: { seedId, sessionId },
+      });
+      console.log('Este es tu código de Chazki: ' + sessionId);
     } else {
       console.log('No es un código de Chazki');
     }
@@ -15,12 +22,10 @@ export const Scanner = () => {
   return (
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
-        width: '100%',
-        padding: '0 0',
+        height: '95%',
+        width: '95%',
+        padding: '0',
+        margin: '0',
       }}
     >
       <QrScanner
@@ -40,7 +45,9 @@ export const Scanner = () => {
         // ++++++++++++++++++
         // constraints={{ facingMode: 'environment' }}
         containerStyle={{
-          border: '2px solid transparent',
+          borderRadius: '1rem',
+        }}
+        videoStyle={{
           borderRadius: '1rem',
         }}
         // hideCount={false}
