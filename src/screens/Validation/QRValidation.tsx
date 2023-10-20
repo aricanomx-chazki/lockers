@@ -8,13 +8,14 @@ import {
 } from 'src/components';
 import { QRValidationStyles } from './QRValidationStyles';
 import { IMAGES } from 'src/assets/Images';
+import Countdown from 'react-countdown';
 
 export const QRValidation = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [token, setToken] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
-  const { sessionId, seedId } = location.state;
+  const { token: sessionId, seedId, timer } = location.state;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const token = event.target.value;
@@ -26,34 +27,41 @@ export const QRValidation = () => {
     }
   };
 
-  // const secret = import.meta.env.VITE_SECRET;
-  // // const secret = 'KVKFKRCPNZQUYMLXOVYDSQKJKZDTSRLD';
-  // // window.otplib.totp.option({
-  // //   digits: 6,
-  // //   epoch: 0,
-  // //   step: 30,
-  // //   window: 2,
-  // // });
-  // // const tokenOTP = window.otplib.totp.generate(secret);
-  // // const checkLocal = window.otplib.totp.check(tokenOTP, secret);
-  // // const checkChazki = window.otplib.totp.check(sessionId, secret);
+  // Random component
 
-  // console.log({
-  //   secret,
-  //   seedId,
-  //   sessionId,
-  //   // tokenOTP,
-  //   // checkLocal,
-  //   // checkChazki,
-  // });
-
-  // setTimeout(() => {
-  //   navigate('/scanner');
-  // }, 45000);
+  // Renderer callback with condition
+  const renderer = ({ seconds, completed }) => {
+    if (completed) {
+      // Render a complete state
+      return navigate('/scanner', { replace: true });
+    } else {
+      // Render a countdown
+      return (
+        <div
+          style={{
+            position: 'absolute',
+            top: '17.5%',
+            right: '40%',
+            transform: 'translate(50%, -50%)',
+            display: 'inline-flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '10',
+            width: '100px',
+            border: 'thin solid #247DE1',
+            borderRadius: '8px ',
+          }}
+        >
+          <h2> {seconds > 10 ? seconds : `0${seconds}`}</h2>
+          <h4>segundos</h4>
+        </div>
+      );
+    }
+  };
 
   setTimeout(() => {
     setIsLoading(false);
-  }, 1000);
+  }, 750);
 
   return (
     <>
@@ -71,7 +79,10 @@ export const QRValidation = () => {
               />
               <h1>Ingrese el código para validar la reservación con ID:</h1>
               <h3>{JSON.stringify(seedId)}</h3>
-              {/* <h3>{JSON.stringify(sessionId)}</h3> */}
+              <Countdown
+                date={Date.now() + Number(timer) * 1000}
+                renderer={renderer}
+              />
             </div>
 
             {token.length === 6 && token !== sessionId ? (
