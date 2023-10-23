@@ -1,21 +1,52 @@
 import { QrScanner } from '@yudiel/react-qr-scanner';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export const Scanner = () => {
+interface Props {
+  showQrModal: boolean;
+  setShowQrModal: (showQrModal: boolean) => void;
+  skeleton: boolean;
+  setSkeleton: (skeleton: boolean) => void;
+}
+
+const URL = 'https://chazki-qr.up.railway.app/validate';
+
+export const Scanner = ({ setSkeleton }: Props) => {
   const navigate = useNavigate();
 
-  const handleDecode = (data: string) => {
+  const handleGetValidation = (data: string) => {
+    setSkeleton(true);
+
     if (data.includes('https://lockers.chazki.com')) {
       const wrongId = data.split('?id=')[1];
       const seedId = wrongId.split('&')[0];
-      const sessionId = data.split('&session=')[1];
+      const token = data.split('&session=')[1].split('&remaining=')[0];
+      const timer = data.split('&remaining=')[1];
 
-      navigate(`/validation/`, {
-        state: { seedId, sessionId },
-      });
-      console.log('Este es tu código de Chazki: ' + sessionId);
-    } else {
-      console.log('No es un código de Chazki');
+      (async () => {
+        await axios({
+          method: 'get',
+          url: `${URL}/${seedId}/${token}`,
+          responseType: 'json',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          withCredentials: false,
+        })
+          .then((res) => {
+            if (res.status === 200) {
+              navigate(`/locker/`, {
+                state: { seedId, token, timer },
+              });
+            }
+          })
+          .catch((err) => console.warn(err))
+          .finally(() => {
+            setTimeout(() => {
+              setSkeleton(false);
+            }, 500);
+          });
+      })();
     }
   };
 
@@ -51,12 +82,12 @@ export const Scanner = () => {
           borderRadius: '1rem',
         }}
         // hideCount={false}
-        // onResult={(result) => console.log(result)}
-        onDecode={(data) => handleDecode(data)}
+        onDecode={(data) => handleGetValidation(data)}
         onError={(error) => console.log(error?.message)}
+        // onResult={(result) => console.log(result)}
         viewFinderBorder={85}
-        scanDelay={10000}
-        tracker={false}
+        scanDelay={5000}
+        // tracker={true}
       />
     </div>
   );
