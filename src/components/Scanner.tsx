@@ -12,7 +12,6 @@ interface Props {
 const URL = 'https://chazki-qr.up.railway.app/validate';
 
 export const Scanner = ({ setSkeleton }: Props) => {
-  // const [data1, setData] = useState([]);
   const navigate = useNavigate();
 
   const handleGetValidation = (data: string) => {
@@ -23,8 +22,6 @@ export const Scanner = ({ setSkeleton }: Props) => {
       const seedId = wrongId.split('&')[0];
       const token = data.split('&session=')[1].split('&remaining=')[0];
       const timer = data.split('&remaining=')[1];
-
-      // console.log('seedId:', seedId, 'token:', token, 'timer:', timer);
 
       (async () => {
         await axios({
@@ -38,14 +35,13 @@ export const Scanner = ({ setSkeleton }: Props) => {
         })
           .then((res) => {
             if (res.status === 200) {
-              navigate(`/validation/`, {
+              navigate(`/locker/`, {
                 state: { seedId, token, timer },
               });
             }
           })
           .catch((err) => console.warn(err))
           .finally(() => {
-            // setSkeleton(false);
             setTimeout(() => {
               setSkeleton(false);
             }, 500);
