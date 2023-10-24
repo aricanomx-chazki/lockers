@@ -4,7 +4,6 @@
   "private": false,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://chazki.github.io/Lockers-demo/",
   "scripts": {
     "dev": "vite",
     "test": "jest --watchAll --coverage --detectOpenHandles --forceExit",
