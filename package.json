@@ -16,7 +16,7 @@
     "pre-commit": "husky install",
     "deploy-dist": "gh-pages -d dist",
     "deploy-storybook": "gh-pages -d storybook-static",
-    "serve": "serve dist -s -n -L -p $PORT"
+    "start": "serve dist -s -n -L -p $PORT"
   },
   "husky": {
     "hooks": {
