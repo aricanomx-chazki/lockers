@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 export const LayoutStyles = styled.div`
@@ -8,9 +9,9 @@ export const LayoutStyles = styled.div`
 `;
 
 type LayoutProps = {
-  children: JSX.Element;
+  children: React.ReactNode;
 };
 
-export const Layout = ({ children }: LayoutProps) => {
+export const LayoutComponent = ({ children }: LayoutProps) => {
   return <LayoutStyles>{children}</LayoutStyles>;
 };

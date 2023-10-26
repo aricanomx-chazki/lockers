@@ -1,9 +1,8 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Component_Logo } from 'src/components';
 import { HomeScreenStyles } from './HomeStyles';
 
-export const Home: React.FC = () => {
+export const Home = () => {
   const navigate = useNavigate();
 
   return (

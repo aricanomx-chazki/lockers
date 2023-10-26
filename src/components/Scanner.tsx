@@ -1,6 +1,6 @@
 import { QrScanner } from '@yudiel/react-qr-scanner';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface Props {
   showQrModal: boolean;
@@ -9,15 +9,14 @@ interface Props {
   setSkeleton: (skeleton: boolean) => void;
 }
 
-const URL = 'https://chazki-qr.up.railway.app/validate';
-
 export const Scanner = ({ setSkeleton }: Props) => {
   const navigate = useNavigate();
+  const { codeOperation } = useParams();
 
   const handleGetValidation = (data: string) => {
     setSkeleton(true);
 
-    if (data.includes('https://lockers.chazki.com')) {
+    if (data.includes('https://lockers.up.railway.app/')) {
       const wrongId = data.split('?id=')[1];
       const seedId = wrongId.split('&')[0];
       const token = data.split('&session=')[1].split('&remaining=')[0];
@@ -26,7 +25,7 @@ export const Scanner = ({ setSkeleton }: Props) => {
       (async () => {
         await axios({
           method: 'get',
-          url: `${URL}/${seedId}/${token}`,
+          url: `https://chazki-qr.up.railway.app/validate/${seedId}/${token}`,
           responseType: 'json',
           headers: {
             'Content-Type': 'application/json',
@@ -34,7 +33,17 @@ export const Scanner = ({ setSkeleton }: Props) => {
           withCredentials: false,
         })
           .then((res) => {
-            if (res.status === 200) {
+            if (codeOperation && res.status === 200) {
+              navigate(`/validation`, {
+                state: {
+                  seedId,
+                  token,
+                  timer,
+                  codeOperation: codeOperation.split('codeOperation=')[1],
+                },
+              });
+            }
+            if (!codeOperation && res.status === 200) {
               navigate(`/locker/`, {
                 state: { seedId, token, timer },
               });

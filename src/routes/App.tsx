@@ -1,19 +1,15 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import {
-  Home,
-  // QRValidation,
-  Scanner_Screen,
-  Verification,
-} from '../screens';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Home, QRValidation, Scanner_Screen, Verification } from '../screens';
 import { ResetGlobalStyles, theme } from '../configs/GlobalStyles';
 
 import { ThemeProvider } from 'styled-components';
-import { Layout } from 'src/components/Layout';
+import { LayoutComponent, Component_Loader } from 'src/components';
 import { Locker } from 'src/screens/Locker/Locker';
+import { Suspense } from 'react';
 
 export const App = () => {
   return (
-    <>
+    <Suspense fallback={<Component_Loader />}>
       <ThemeProvider theme={theme}>
         <ResetGlobalStyles />
         <BrowserRouter>
@@ -22,39 +18,47 @@ export const App = () => {
             <Route
               path="/scanner"
               element={
-                <Layout>
+                <LayoutComponent>
                   <Scanner_Screen />
-                </Layout>
+                </LayoutComponent>
               }
             />
-            {/* <Route
-              path="/validation"
+            <Route
+              path="/scanner/:codeOperation"
               element={
-                <Layout>
-                  <QRValidation />
-                </Layout>
+                <LayoutComponent>
+                  <Scanner_Screen />
+                </LayoutComponent>
               }
-            /> */}
+            />
             <Route
               path="/locker"
               element={
-                <Layout>
+                <LayoutComponent>
                   <Locker />
-                </Layout>
+                </LayoutComponent>
+              }
+            />
+            <Route
+              path="/validation"
+              element={
+                <LayoutComponent>
+                  <QRValidation />
+                </LayoutComponent>
               }
             />
             <Route
               path="/verification"
               element={
-                <Layout>
+                <LayoutComponent>
                   <Verification />
-                </Layout>
+                </LayoutComponent>
               }
             />
-            <Route path="*" element={<Navigate to="/" />} />
+            {/* <Route path="*" element={<Navigate to="/" />} /> */}
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
-    </>
+    </Suspense>
   );
 };
