@@ -2,7 +2,7 @@ import { Input } from 'antd';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
-  Component_Loader,
+  // Component_Loader,
   Component_Logo,
   Component_Skeleton,
 } from 'src/components';
@@ -31,7 +31,7 @@ export const QRValidation = () => {
     }
   };
 
-  console.log(state.codeOperation);
+  console.log(state.codeOperation, code);
 
   // Random component
 
