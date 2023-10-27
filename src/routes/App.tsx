@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Home, QRValidation, Scanner_Screen, Verification } from '../screens';
+import { QRValidation, Scanner_Screen, Verification } from '../screens';
 import { ResetGlobalStyles, theme } from '../configs/GlobalStyles';
 
 import { ThemeProvider } from 'styled-components';
@@ -14,9 +14,9 @@ export const App = () => {
         <ResetGlobalStyles />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
+            {/* <Route path="/" element={<Home />} /> */}
             <Route
-              path="/scanner"
+              path="/"
               element={
                 <LayoutComponent>
                   <Scanner_Screen />
@@ -24,7 +24,7 @@ export const App = () => {
               }
             />
             <Route
-              path="/scanner/:codeOperation"
+              path="/:codeOperation"
               element={
                 <LayoutComponent>
                   <Scanner_Screen />

@@ -34,7 +34,7 @@ export const Scanner = ({ setSkeleton }: Props) => {
           withCredentials: false,
         })
           .then((res) => {
-            if (search && res.status === 200) {
+            if (!search && res.status === 200) {
               navigate(`/validation`, {
                 state: {
                   seedId,
@@ -44,7 +44,7 @@ export const Scanner = ({ setSkeleton }: Props) => {
                 },
               });
             }
-            if (!search && res.status === 200) {
+            if (search && res.status === 200) {
               navigate(`/locker/`, {
                 state: { seedId, token, timer },
               });
@@ -99,6 +99,16 @@ export const Scanner = ({ setSkeleton }: Props) => {
         scanDelay={5000}
         // tracker={true}
       />
+      {search !== undefined && (
+        <h1
+          style={{
+            textAlign: 'center',
+            fontSize: '1.5rem',
+          }}
+        >
+          Escanea el QR que aparece en la pantalla del locker.
+        </h1>
+      )}
     </div>
   );
 };
