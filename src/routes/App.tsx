@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { QRValidation, Scanner_Screen, Verification } from '../screens';
 import { ResetGlobalStyles, theme } from '../configs/GlobalStyles';
 
@@ -48,14 +48,14 @@ export const App = () => {
               }
             />
             <Route
-              path="/verification"
+              path="/verification/"
               element={
                 <LayoutComponent>
                   <Verification />
                 </LayoutComponent>
               }
             />
-            {/* <Route path="*" element={<Navigate to="/" />} /> */}
+            <Route path="*" element={<Navigate to="/verification/" />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
