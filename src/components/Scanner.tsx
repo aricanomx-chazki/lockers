@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { QrScanner } from '@yudiel/react-qr-scanner';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface Props {
   showQrModal: boolean;
@@ -75,7 +75,7 @@ export const Scanner = ({ setSkeleton }: Props) => {
         margin: '0',
       }}
     >
-      <QrScanner
+      {/* <QrScanner
         // constraints?: MediaTrackConstraints;
         // containerStyle?: CSSProperties;
         // deviceId?: string;
@@ -104,7 +104,7 @@ export const Scanner = ({ setSkeleton }: Props) => {
         viewFinderBorder={85}
         scanDelay={5000}
         // tracker={true}
-      />
+      /> */}
       {search !== undefined && (
         <h1
           style={{

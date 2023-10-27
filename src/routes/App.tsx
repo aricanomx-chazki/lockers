@@ -1,15 +1,9 @@
-import {
-  BrowserRouter,
-  // Navigate,
-  Route,
-  Routes,
-} from 'react-router-dom';
-import { QRValidation, Scanner_Screen, Verification } from '../screens';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { QRValidation, Scanner_Screen, Verification, Locker } from '../screens';
 import { ResetGlobalStyles, theme } from '../configs/GlobalStyles';
 
 import { ThemeProvider } from 'styled-components';
 import { LayoutComponent, Component_Loader } from 'src/components';
-import { Locker } from 'src/screens/Locker/Locker';
 import { Suspense } from 'react';
 
 export const App = () => {
@@ -28,8 +22,26 @@ export const App = () => {
                 </LayoutComponent>
               }
             />
+
             <Route
               path="/:id"
+              element={
+                <LayoutComponent>
+                  <Scanner_Screen />
+                </LayoutComponent>
+              }
+            />
+
+            {/* <Route
+              path=":id/session/:remaining/:codeOperation"
+              element={
+                <LayoutComponent>
+                  <Scanner_Screen />
+                </LayoutComponent>
+              }
+            /> */}
+            {/* <Route
+              path="/?:id"
               element={
                 <LayoutComponent>
                   <Verification />
@@ -43,8 +55,8 @@ export const App = () => {
                   <Scanner_Screen />
                 </LayoutComponent>
               }
-            />
-            <Route
+            />*/}
+            {/* <Route
               path="/locker"
               element={
                 <LayoutComponent>
@@ -67,7 +79,7 @@ export const App = () => {
                   <Verification />
                 </LayoutComponent>
               }
-            />
+            /> */}
             {/* <Route path="*" element={<Navigate to="/" />} /> */}
           </Routes>
         </BrowserRouter>
