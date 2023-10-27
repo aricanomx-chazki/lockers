@@ -1,6 +1,6 @@
-import { QrScanner } from '@yudiel/react-qr-scanner';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { QrScanner } from '@yudiel/react-qr-scanner';
 
 interface Props {
   showQrModal: boolean;
@@ -21,7 +21,10 @@ export const Scanner = ({ setSkeleton }: Props) => {
       const wrongId = data.split('?id=')[1];
       const seedId = wrongId.split('&')[0];
       const token = data.split('&session=')[1].split('&remaining=')[0];
-      const timer = data.split('&remaining=')[1];
+      const timer = data.split('&remaining=')[1].split('&codeOperation=')[0];
+      const codeOp = data.split('&codeOperation=')[1];
+
+      console.log('codeOp', codeOp);
 
       (async () => {
         await axios({
@@ -34,19 +37,22 @@ export const Scanner = ({ setSkeleton }: Props) => {
           withCredentials: false,
         })
           .then((res) => {
-            if (!search && res.status === 200) {
-              navigate(`/validation`, {
+            if (
+              res.status === 200 &&
+              codeOp === search.split('?codeOperation=')[1]
+            ) {
+              navigate(`/locker`, {
                 state: {
                   seedId,
                   token,
                   timer,
-                  codeOperation: search.split('?codeOperation=')[1],
+                  codeOp,
                 },
               });
             }
-            if (search && res.status === 200) {
-              navigate(`/locker/`, {
-                state: { seedId, token, timer },
+            if (res.status === 200 && search.length === 0) {
+              navigate(`/validation`, {
+                state: { seedId, token, timer, codeOperation: codeOp },
               });
             }
           })
@@ -103,7 +109,8 @@ export const Scanner = ({ setSkeleton }: Props) => {
         <h1
           style={{
             textAlign: 'center',
-            fontSize: '1.5rem',
+            fontSize: '1.25rem',
+            color: '#133D73',
           }}
         >
           Escanea el QR que aparece en la pantalla del locker.
