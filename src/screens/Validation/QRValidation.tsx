@@ -89,8 +89,16 @@ export const QRValidation = () => {
                 date={Date.now() + Number(timer) * 1000}
                 renderer={renderer}
               /> */}
+              <h1
+                style={{
+                  textAlign: 'center',
+                  fontSize: '1.25rem',
+                  color: '#133D73',
+                }}
+              >
+                Ingrese el código para validar la reservación
+              </h1>
             </div>
-
             <Input
               type="text"
               placeholder="Ingrese el código que recibió por correo"
