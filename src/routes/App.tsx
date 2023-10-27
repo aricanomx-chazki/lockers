@@ -24,6 +24,14 @@ export const App = () => {
               }
             />
             <Route
+              path="/:id"
+              element={
+                <LayoutComponent>
+                  <Verification />
+                </LayoutComponent>
+              }
+            />
+            <Route
               path="/:codeOperation"
               element={
                 <LayoutComponent>
@@ -55,7 +63,7 @@ export const App = () => {
                 </LayoutComponent>
               }
             />
-            <Route path="*" element={<Navigate to="/verification/" />} />
+            {/* <Route path="*" element={<Navigate to="/" />} /> */}
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
