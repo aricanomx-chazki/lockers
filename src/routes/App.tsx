@@ -1,4 +1,9 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter,
+  // Navigate,
+  Route,
+  Routes,
+} from 'react-router-dom';
 import { QRValidation, Scanner_Screen, Verification } from '../screens';
 import { ResetGlobalStyles, theme } from '../configs/GlobalStyles';
 
