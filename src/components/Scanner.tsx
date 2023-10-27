@@ -1,6 +1,6 @@
 import { QrScanner } from '@yudiel/react-qr-scanner';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface Props {
   showQrModal: boolean;
@@ -11,7 +11,8 @@ interface Props {
 
 export const Scanner = ({ setSkeleton }: Props) => {
   const navigate = useNavigate();
-  const { codeOperation } = useParams();
+  const location = useLocation();
+  const { search } = location;
 
   const handleGetValidation = (data: string) => {
     setSkeleton(true);
@@ -33,17 +34,17 @@ export const Scanner = ({ setSkeleton }: Props) => {
           withCredentials: false,
         })
           .then((res) => {
-            if (codeOperation && res.status === 200) {
+            if (search && res.status === 200) {
               navigate(`/validation`, {
                 state: {
                   seedId,
                   token,
                   timer,
-                  codeOperation: codeOperation.split('codeOperation=')[1],
+                  codeOperation: search.split('?codeOperation=')[1],
                 },
               });
             }
-            if (!codeOperation && res.status === 200) {
+            if (!search && res.status === 200) {
               navigate(`/locker/`, {
                 state: { seedId, token, timer },
               });
