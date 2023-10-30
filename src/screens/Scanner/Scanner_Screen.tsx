@@ -41,7 +41,10 @@ export const Scanner_Screen = () => {
               },
             });
           })
-          .catch((err) => console.log('Error: ', err));
+          .catch((err) => {
+            console.log('Error: ', err);
+            setShowQrModal(true);
+          });
       })();
     }
     if (codeOperation) setShowScan(true);

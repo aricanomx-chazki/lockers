@@ -35,9 +35,14 @@ export const Scanner = ({ codeOperation }: Props) => {
           withCredentials: false,
         })
           .then(() => {
-            navigate(`/validation`, {
-              state: { id, token, remaining, codeOperation },
-            });
+            if (codeOperation)
+              navigate(`/locker`, {
+                state: { id, token, remaining },
+              });
+            if (codeOperation)
+              navigate(`/validation`, {
+                state: { id, token, remaining, codeOperation },
+              });
           })
           .catch((err) => console.warn(err));
       })();
