@@ -49,7 +49,7 @@ export const Scanner_Screen = () => {
 
   setTimeout(() => {
     setIsLoading(false);
-    setShowSkeleton(!isLoading);
+    setShowSkeleton(false);
   }, 2000);
 
   return (
