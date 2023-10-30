@@ -21,6 +21,14 @@ export const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
+              path="/scanner"
+              element={
+                <LayoutComponent>
+                  <Scanner_Screen />
+                </LayoutComponent>
+              }
+            />
+            <Route
               path="/scanner/:id"
               element={
                 <LayoutComponent>
