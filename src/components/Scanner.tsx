@@ -1,69 +1,66 @@
 import axios from 'axios';
 import { QrScanner } from '@yudiel/react-qr-scanner';
 import { useLocation, useNavigate } from 'react-router-dom';
+// import { useEffect } from 'react';
 
 interface Props {
   showQrModal: boolean;
   setShowQrModal: (showQrModal: boolean) => void;
-  skeleton: boolean;
-  setSkeleton: (skeleton: boolean) => void;
+  codeOperation: string | null;
 }
 
-export const Scanner = ({ setSkeleton }: Props) => {
+export const Scanner = ({ codeOperation }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { search } = location;
 
   const handleGetValidation = (data: string) => {
-    setSkeleton(true);
-
-    if (data.includes('https://lockers.up.railway.app/')) {
-      const wrongId = data.split('?id=')[1];
-      const seedId = wrongId.split('&')[0];
-      const token = data.split('&session=')[1].split('&remaining=')[0];
-      const timer = data.split('&remaining=')[1].split('&codeOperation=')[0];
-      const codeOp = data.split('&codeOperation=')[1];
-
-      console.log('codeOp', codeOp);
-
-      (async () => {
-        await axios({
-          method: 'get',
-          url: `https://chazki-qr.up.railway.app/validate/${seedId}/${token}`,
-          responseType: 'json',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          withCredentials: false,
-        })
-          .then((res) => {
-            if (
-              res.status === 200 &&
-              codeOp === search.split('?codeOperation=')[1]
-            ) {
-              navigate(`/locker`, {
-                state: {
-                  seedId,
-                  token,
-                  timer,
-                  codeOp,
-                },
-              });
-            }
-            if (res.status === 200 && search.length === 0) {
-              navigate(`/validation`, {
-                state: { seedId, token, timer, codeOperation: codeOp },
-              });
-            }
-          })
-          .catch((err) => console.warn(err))
-          .finally(() => {
-            setTimeout(() => {
-              setSkeleton(false);
-            }, 500);
-          });
-      })();
-    }
+    console.log('data', data);
+    // if (data.includes('https://lockers.up.railway.app/')) {
+    //     const wrongId = data.split('?id=')[1];
+    //     const seedId = wrongId.split('&')[0];
+    //     const token = data.split('&session=')[1].split('&remaining=')[0];
+    //     const timer = data.split('&remaining=')[1].split('&codeOperation=')[0];
+    //     const codeOp = data.split('&codeOperation=')[1];
+    //     console.log('codeOp', codeOp);
+    //     (async () => {
+    //       await axios({
+    //         method: 'get',
+    //         url: `https://chazki-qr.up.railway.app/validate/${id}/${token}`,
+    //         responseType: 'json',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //         },
+    //         withCredentials: false,
+    //       })
+    //         .then((res) => {
+    //           if (
+    //             res.status === 200 &&
+    //             codeOp === search.split('?codeOperation=')[1]
+    //           ) {
+    //             navigate(`/locker`, {
+    //               state: {
+    //                 seedId,
+    //                 token,
+    //                 timer,
+    //                 codeOp,
+    //               },
+    //             });
+    //           }
+    //           if (res.status === 200 && search.length === 0) {
+    //             navigate(`/validation`, {
+    //               state: { seedId, token, timer, codeOperation: codeOp },
+    //             });
+    //           }
+    //         })
+    //         .catch((err) => console.warn(err))
+    //         .finally(() => {
+    //           setTimeout(() => {
+    //             setSkeleton(false);
+    //           }, 500);
+    //         });
+    //     })();
+    //   }
   };
 
   return (
@@ -75,7 +72,7 @@ export const Scanner = ({ setSkeleton }: Props) => {
         margin: '0',
       }}
     >
-      {/* <QrScanner
+      <QrScanner
         // constraints?: MediaTrackConstraints;
         // containerStyle?: CSSProperties;
         // deviceId?: string;
@@ -104,7 +101,7 @@ export const Scanner = ({ setSkeleton }: Props) => {
         viewFinderBorder={85}
         scanDelay={5000}
         // tracker={true}
-      /> */}
+      />
       {search !== undefined && (
         <h1
           style={{

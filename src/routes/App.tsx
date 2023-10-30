@@ -56,7 +56,7 @@ export const App = () => {
                 </LayoutComponent>
               }
             />*/}
-            {/* <Route
+            <Route
               path="/locker"
               element={
                 <LayoutComponent>
@@ -79,7 +79,7 @@ export const App = () => {
                   <Verification />
                 </LayoutComponent>
               }
-            /> */}
+            />
             {/* <Route path="*" element={<Navigate to="/" />} /> */}
           </Routes>
         </BrowserRouter>
