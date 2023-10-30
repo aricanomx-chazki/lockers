@@ -1,5 +1,11 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { QRValidation, Scanner_Screen, Verification, Locker } from '../screens';
+import {
+  QRValidation,
+  Scanner_Screen,
+  Verification,
+  Locker,
+  Home,
+} from '../screens';
 import { ResetGlobalStyles, theme } from '../configs/GlobalStyles';
 
 import { ThemeProvider } from 'styled-components';
@@ -13,16 +19,7 @@ export const App = () => {
         <ResetGlobalStyles />
         <BrowserRouter>
           <Routes>
-            {/* <Route path="/" element={<Home />} /> */}
-            <Route
-              path="/"
-              element={
-                <LayoutComponent>
-                  <Scanner_Screen />
-                </LayoutComponent>
-              }
-            />
-
+            <Route path="/" element={<Home />} />
             <Route
               path="/:id"
               element={
@@ -31,31 +28,6 @@ export const App = () => {
                 </LayoutComponent>
               }
             />
-
-            {/* <Route
-              path=":id/session/:remaining/:codeOperation"
-              element={
-                <LayoutComponent>
-                  <Scanner_Screen />
-                </LayoutComponent>
-              }
-            /> */}
-            {/* <Route
-              path="/?:id"
-              element={
-                <LayoutComponent>
-                  <Verification />
-                </LayoutComponent>
-              }
-            />
-            <Route
-              path="/:codeOperation"
-              element={
-                <LayoutComponent>
-                  <Scanner_Screen />
-                </LayoutComponent>
-              }
-            />*/}
             <Route
               path="/locker"
               element={
