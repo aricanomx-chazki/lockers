@@ -19,7 +19,7 @@ export const Scanner_Screen = () => {
   const codeOperation = searchParams.get('codeOperation');
 
   useEffect(() => {
-    if (token && id) {
+    if (codeOperation) {
       (async () => {
         console.log('token', token, 'id', id);
         await axios({
@@ -32,7 +32,7 @@ export const Scanner_Screen = () => {
           withCredentials: false,
         })
           .then(() => {
-            navigate(`/locker`, {
+            navigate(`/validation`, {
               state: {
                 id,
                 token,
@@ -47,7 +47,7 @@ export const Scanner_Screen = () => {
           });
       })();
     }
-    if (codeOperation) setShowScan(true);
+    if (token && id) setShowScan(true);
   }, [codeOperation, id, navigate, remaining, token]);
 
   setTimeout(() => {

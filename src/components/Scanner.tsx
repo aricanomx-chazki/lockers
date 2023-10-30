@@ -39,7 +39,7 @@ export const Scanner = ({ codeOperation }: Props) => {
               navigate(`/locker`, {
                 state: { id, token, remaining },
               });
-            if (codeOperation)
+            if (!codeOperation)
               navigate(`/validation`, {
                 state: { id, token, remaining, codeOperation },
               });
