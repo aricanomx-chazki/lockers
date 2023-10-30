@@ -7,9 +7,10 @@ interface Props {
   showQrModal: boolean;
   setShowQrModal: (showQrModal: boolean) => void;
   codeOperation: string | null;
+  codeProvisional?: string;
 }
 
-export const Scanner = ({ codeOperation }: Props) => {
+export const Scanner = ({ codeOperation, codeProvisional }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { search } = location;
@@ -41,7 +42,7 @@ export const Scanner = ({ codeOperation }: Props) => {
               });
             if (!codeOperation)
               navigate(`/validation`, {
-                state: { id, token, remaining, codeOperation },
+                state: { id, token, remaining, codeOperation: codeProvisional },
               });
           })
           .catch((err) => console.warn(err));

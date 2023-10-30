@@ -2,21 +2,24 @@ import { Component_Logo, Component_Skeleton, Scanner } from 'src/components';
 import { ScannerScreenStyles } from './ScannerStyles';
 import { Skeleton } from 'antd';
 import { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
 export const Scanner_Screen = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
   const [showSkeleton, setShowSkeleton] = useState(false);
   const [showScan, setShowScan] = useState(false);
   const [showQrModal, setShowQrModal] = useState(false);
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const id = searchParams.get('id');
   const token = searchParams.get('session');
   const remaining = searchParams.get('remaining');
   const codeOperation = searchParams.get('codeOperation');
+
+  const codeOperationState = state?.codeOperation;
 
   useEffect(() => {
     if (token && id) {
@@ -51,14 +54,15 @@ export const Scanner_Screen = () => {
     }
 
     if (!codeOperation && !token && !id) {
+      console.log('3rd Method');
       setShowScan(true);
-      navigate('', {
+      navigate(`/scanner`, {
         state: {
           codeOperation: '234908',
         },
       });
     }
-  }, [codeOperation, id, navigate, remaining, token]);
+  }, [codeOperation, id, navigate, remaining, setSearchParams, token]);
 
   setTimeout(() => {
     setIsLoading(false);
@@ -88,6 +92,7 @@ export const Scanner_Screen = () => {
               showQrModal={showQrModal}
               setShowQrModal={setShowQrModal}
               codeOperation={codeOperation}
+              codeProvisional={codeOperationState}
             />
           )}
         </ScannerScreenStyles>
