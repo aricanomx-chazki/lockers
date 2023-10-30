@@ -52,6 +52,14 @@ export const Scanner_Screen = () => {
 
     if (!codeOperation && !token && !id) {
       setShowScan(true);
+      navigate('', {
+        state: {
+          id: '1',
+          token: '1',
+          remaining: '1',
+          codeOperation: '234908',
+        },
+      });
     }
   }, [codeOperation, id, navigate, remaining, token]);
 
