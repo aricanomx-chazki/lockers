@@ -21,7 +21,7 @@ export const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
-              path="/:id"
+              path="/scanner/:id"
               element={
                 <LayoutComponent>
                   <Scanner_Screen />

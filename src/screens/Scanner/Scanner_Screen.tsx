@@ -41,23 +41,17 @@ export const Scanner_Screen = () => {
             });
           })
           .catch((err) => {
-            setShowScan(true);
             console.log('Error: ', err);
-            // setShowQrModal(true);
           });
       })();
     }
 
     if (codeOperation) {
       setShowScan(true);
-      // navigate(`/locker`, {
-      //   state: {
-      //     id,
-      //     token,
-      //     remaining,
-      //     codeOperation,
-      //   },
-      // });
+    }
+
+    if (!codeOperation && !token && !id) {
+      setShowScan(true);
     }
   }, [codeOperation, id, navigate, remaining, token]);
 
