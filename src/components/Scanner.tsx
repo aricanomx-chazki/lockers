@@ -15,51 +15,33 @@ export const Scanner = ({ codeOperation }: Props) => {
   const { search } = location;
 
   const handleGetValidation = (data: string) => {
-    console.log('data', data);
-    // if (data.includes('https://lockers.up.railway.app/')) {
-    //     const wrongId = data.split('?id=')[1];
-    //     const seedId = wrongId.split('&')[0];
-    //     const token = data.split('&session=')[1].split('&remaining=')[0];
-    //     const timer = data.split('&remaining=')[1].split('&codeOperation=')[0];
-    //     const codeOp = data.split('&codeOperation=')[1];
-    //     console.log('codeOp', codeOp);
-    //     (async () => {
-    //       await axios({
-    //         method: 'get',
-    //         url: `https://chazki-qr.up.railway.app/validate/${id}/${token}`,
-    //         responseType: 'json',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //         },
-    //         withCredentials: false,
-    //       })
-    //         .then((res) => {
-    //           if (
-    //             res.status === 200 &&
-    //             codeOp === search.split('?codeOperation=')[1]
-    //           ) {
-    //             navigate(`/locker`, {
-    //               state: {
-    //                 seedId,
-    //                 token,
-    //                 timer,
-    //                 codeOp,
-    //               },
-    //             });
-    //           }
-    //           if (res.status === 200 && search.length === 0) {
-    //             navigate(`/validation`, {
-    //               state: { seedId, token, timer, codeOperation: codeOp },
-    //             });
-    //           }
-    //         })
-    //         .catch((err) => console.warn(err))
-    //         .finally(() => {
-    //           setTimeout(() => {
-    //             setSkeleton(false);
-    //           }, 500);
-    //         });
-    //     })();
+    if (data.includes('https://lockers.up.railway.app/')) {
+      console.log('data', data);
+      const wrongId = data.split('?id=')[1];
+      const id = wrongId.split('&')[0];
+      const token = data.split('&session=')[1].split('&remaining=')[0];
+      const remaining = data
+        .split('&remaining=')[1]
+        .split('&codeOperation=')[0];
+
+      (async () => {
+        await axios({
+          method: 'get',
+          url: `https://chazki-qr.up.railway.app/validate/${id}/${token}`,
+          responseType: 'json',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          withCredentials: false,
+        })
+          .then(() => {
+            navigate(`/validation`, {
+              state: { id, token, remaining, codeOperation },
+            });
+          })
+          .catch((err) => console.warn(err));
+      })();
+    }
     //   }
   };
 

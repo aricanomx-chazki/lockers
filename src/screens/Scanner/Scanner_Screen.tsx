@@ -6,7 +6,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
 export const Scanner_Screen = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
   const [showSkeleton, setShowSkeleton] = useState(false);
   const [showScan, setShowScan] = useState(false);
@@ -20,7 +20,7 @@ export const Scanner_Screen = () => {
 
   useEffect(() => {
     if (token && id) {
-      (async ({ id, token }) => {
+      (async () => {
         console.log('token', token, 'id', id);
         await axios({
           method: 'get',
@@ -31,7 +31,7 @@ export const Scanner_Screen = () => {
           },
           withCredentials: false,
         })
-          .then((res) => {
+          .then(() => {
             navigate(`/locker`, {
               state: {
                 id,
@@ -49,6 +49,7 @@ export const Scanner_Screen = () => {
 
   setTimeout(() => {
     setIsLoading(false);
+    setShowSkeleton(!isLoading);
   }, 2000);
 
   return (
