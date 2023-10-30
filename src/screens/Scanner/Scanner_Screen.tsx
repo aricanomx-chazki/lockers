@@ -19,9 +19,8 @@ export const Scanner_Screen = () => {
   const codeOperation = searchParams.get('codeOperation');
 
   useEffect(() => {
-    if (codeOperation) {
+    if (token && id) {
       (async () => {
-        console.log('token', token, 'id', id);
         await axios({
           method: 'get',
           url: `https://chazki-qr.up.railway.app/validate/${id}/${token}`,
@@ -32,12 +31,13 @@ export const Scanner_Screen = () => {
           withCredentials: false,
         })
           .then(() => {
+            setShowScan(true);
             navigate(`/validation`, {
               state: {
                 id,
                 token,
                 remaining,
-                codeOperation,
+                codeOperation: '234908',
               },
             });
           })
@@ -47,7 +47,35 @@ export const Scanner_Screen = () => {
           });
       })();
     }
-    if (token && id) setShowScan(true);
+    //     if (codeOperation) {
+    //       (async () => {
+
+    //    await axios({
+    //      method: 'get',
+    //      url: `https://chazki-qr.up.railway.app/validate/${id}/${token}`,
+    //      responseType: 'json',
+    //      headers: {
+    //        'Content-Type': 'application/json',
+    //      },
+    //      withCredentials: false,
+    //    })
+    //      .then(() => {
+    //        setShowScan(true);
+    //        navigate(`/validation`, {
+    //          state: {
+    //            id,
+    //            token,
+    //            remaining,
+    //            codeOperation: '234908',
+    //          },
+    //        });
+    //      })
+    //      .catch((err) => {
+    //        console.log('Error: ', err);
+    //        setShowQrModal(true);
+    //      });
+    //  })();
+    //     };
   }, [codeOperation, id, navigate, remaining, token]);
 
   setTimeout(() => {
