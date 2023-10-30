@@ -31,7 +31,6 @@ export const Scanner_Screen = () => {
           withCredentials: false,
         })
           .then(() => {
-            setShowScan(true);
             navigate(`/validation`, {
               state: {
                 id,
@@ -42,8 +41,9 @@ export const Scanner_Screen = () => {
             });
           })
           .catch((err) => {
+            setShowScan(true);
             console.log('Error: ', err);
-            setShowQrModal(true);
+            // setShowQrModal(true);
           });
       })();
     }
